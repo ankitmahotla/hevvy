@@ -3,6 +3,7 @@ import { ThemedView } from "@/components/ThemedView";
 import { Link } from "expo-router";
 import { Pressable, Text, View } from "react-native";
 import { Dumbbell } from "lucide-react-native";
+import { GoogleLogo } from "@/svg-imports";
 
 export default function AuthHome() {
   return (
@@ -14,7 +15,8 @@ export default function AuthHome() {
         <Dumbbell size={120} color="white" />
       </View>
       <ThemedView className="flex-col gap-4 items-center justify-center pb-6">
-        <Pressable className="w-full bg-white px-3 py-2 rounded-lg">
+        <Pressable className="w-full flex-row gap-4 items-center justify-center bg-white px-3 py-2 rounded-lg">
+          <GoogleLogo width={20} height={20} />
           <Text className="text-lg text-center">Sign up with Google</Text>
         </Pressable>
         <Pressable className="w-full bg-blue-500 px-3 py-2 rounded-lg">
