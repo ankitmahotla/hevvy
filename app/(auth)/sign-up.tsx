@@ -1,4 +1,4 @@
-import { ScreenHeader } from "@/components/screen-header";
+import { StackHeader } from "@/components/stack-header";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import {
@@ -15,7 +15,7 @@ export default function SignUp() {
       style={{ flex: 1 }}
     >
       <ThemedView className="flex-1 pt-12 px-2">
-        <ScreenHeader title="Sign Up" />
+        <StackHeader title="Sign Up" />
         <ThemedView className="px-6">
           <ThemedView className="gap-8 mt-10">
             <ThemedView className="border-b border-b-zinc-400">

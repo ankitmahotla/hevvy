@@ -4,11 +4,11 @@ import { ThemedView } from "./ThemedView";
 import { Pressable } from "react-native";
 import { router } from "expo-router";
 
-interface ScreenHeaderProps {
+interface StackHeaderProps {
   title: String;
 }
 
-export const ScreenHeader = ({ title }: ScreenHeaderProps) => {
+export const StackHeader = ({ title }: StackHeaderProps) => {
   return (
     <ThemedView>
       <Pressable
