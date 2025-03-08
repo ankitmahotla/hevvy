@@ -1,6 +1,6 @@
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import { Pressable, Text, View } from "react-native";
 import { Dumbbell } from "lucide-react-native";
 import { GoogleLogo } from "@/svg-imports";
@@ -19,7 +19,10 @@ export default function AuthHome() {
           <GoogleLogo width={20} height={20} />
           <Text className="text-lg text-center">Sign up with Google</Text>
         </Pressable>
-        <Pressable className="w-full bg-blue-500 px-3 py-2 rounded-lg">
+        <Pressable
+          onPress={() => router.push("/sign-up")}
+          className="w-full bg-blue-500 px-3 py-2 rounded-lg"
+        >
           <ThemedText className="text-lg text-center">
             Sign up with Email
           </ThemedText>
