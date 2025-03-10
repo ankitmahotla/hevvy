@@ -9,7 +9,6 @@ import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { AppHeader } from "@/components/app-header";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { ThemedView } from "@/components/ThemedView";
 import { DumbbellIcon } from "lucide-react-native";
 
 export default function TabLayout() {
@@ -27,9 +26,9 @@ export default function TabLayout() {
                 ? "Home"
                 : route.name.charAt(0).toUpperCase() + route.name.slice(1);
             return (
-              <ThemedView className="px-2 pt-4">
+              <View className="px-2 pt-4">
                 <AppHeader title={title} />
-              </ThemedView>
+              </View>
             );
           },
           tabBarBackground: TabBarBackground,

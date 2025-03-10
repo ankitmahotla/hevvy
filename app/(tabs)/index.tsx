@@ -1,10 +1,9 @@
-import { ThemedText } from "@/components/ThemedText";
-import { ThemedView } from "@/components/ThemedView";
+import { Text, View } from "react-native";
 
 export default function HomeScreen() {
   return (
-    <ThemedView className="flex-1 pt-6 px-2">
-      <ThemedText>Your first workout</ThemedText>
-    </ThemedView>
+    <View className="flex-1 pt-6 px-2">
+      <Text className="text-white">Your first workout</Text>
+    </View>
   );
 }

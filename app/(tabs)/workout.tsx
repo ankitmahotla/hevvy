@@ -1,54 +1,49 @@
-import { ThemedText } from "@/components/ThemedText";
-import { ThemedView } from "@/components/ThemedView";
-import { useColorScheme } from "@/hooks/useColorScheme.web";
 import {
   ChevronDownIcon,
   LogsIcon,
   PlusIcon,
   SearchIcon,
 } from "lucide-react-native";
-import { Pressable } from "react-native";
+import { Pressable, Text, View } from "react-native";
 
 export default function Workout() {
-  const colorScheme = useColorScheme();
-
   return (
-    <ThemedView className="flex-1 pt-6 px-2">
-      <ThemedText>Quick Workout</ThemedText>
-      <Pressable className="w-full flex-row gap-4 bg-primary items-center px-4 py-3 rounded-lg mt-4">
+    <View className="flex-1 pt-6 px-2">
+      <Text className="text-white">Quick Workout</Text>
+      <Pressable className="w-full flex-row gap-4 bg-zinc-800 items-center px-4 py-3 rounded-lg mt-4">
         <PlusIcon
           size={24}
-          color={colorScheme === "dark" ? "white" : "black"}
+         color="white"
         />
-        <ThemedText className="text-lg text-center">
+        <Text className="text-lg text-white text-center">
           Start Empty Workout
-        </ThemedText>
+        </Text>
       </Pressable>
-      <ThemedText className="mt-8">Quick Workout</ThemedText>
-      <ThemedView className="flex-row w-full items-center justify-between">
-        <Pressable className="w-[47%] flex-row gap-4 bg-primary items-center px-4 py-3 rounded-lg mt-4">
+      <Text className="mt-8 text-white">Quick Workout</Text>
+      <View className="flex-row w-full items-center justify-between">
+        <Pressable className="w-[47%] flex-row gap-4 bg-zinc-800 items-center px-4 py-3 rounded-lg mt-4">
           <LogsIcon
             size={22}
-            color={colorScheme === "dark" ? "white" : "black"}
+           color="white"
           />
-          <ThemedText className="text-lg text-center">New Routine</ThemedText>
+          <Text className="text-lg text-white text-center">New Routine</Text>
         </Pressable>
-        <Pressable className="w-[47%] flex-row gap-4 bg-primary items-center px-4 py-3 rounded-lg mt-4">
+        <Pressable className="w-[47%] flex-row gap-4 bg-zinc-800 items-center px-4 py-3 rounded-lg mt-4">
           <SearchIcon
             size={22}
-            color={colorScheme === "dark" ? "white" : "black"}
+             color="white"
           />
-          <ThemedText className="text-lg text-center">Explore</ThemedText>
+          <Text className="text-lg text-white text-center">Explore</Text>
         </Pressable>
-      </ThemedView>
-      <ThemedView className="flex-row items-center gap-2 mt-4">
+      </View>
+      <View className="flex-row items-center gap-2 mt-4">
         <ChevronDownIcon
           size={18}
-          color={colorScheme === "dark" ? "white" : "black"}
+          color="white"
           className="bg-black"
         />
-        <ThemedText>My Routines</ThemedText>
-      </ThemedView>
-    </ThemedView>
+        <Text className="text-white">My Routines</Text>
+      </View>
+    </View>
   );
 }
