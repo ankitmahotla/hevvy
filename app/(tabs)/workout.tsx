@@ -1,3 +1,4 @@
+import { router } from "expo-router";
 import {
   ChevronDownIcon,
   LogsIcon,
@@ -10,7 +11,7 @@ export default function Workout() {
   return (
     <View className="flex-1 pt-6 px-2">
       <Text className="text-white">Quick Workout</Text>
-      <Pressable className="w-full flex-row gap-4 bg-zinc-800 items-center px-4 py-3 rounded-lg mt-4">
+      <Pressable onPress={() => router.push("/workout/empty")} className="w-full flex-row gap-4 bg-zinc-800 items-center px-4 py-3 rounded-lg mt-4">
         <PlusIcon
           size={24}
          color="white"
@@ -19,7 +20,7 @@ export default function Workout() {
           Start Empty Workout
         </Text>
       </Pressable>
-      <Text className="mt-8 text-white">Quick Workout</Text>
+      <Text className="mt-8 text-white">Routines</Text>
       <View className="flex-row w-full items-center justify-between">
         <Pressable className="w-[47%] flex-row gap-4 bg-zinc-800 items-center px-4 py-3 rounded-lg mt-4">
           <LogsIcon

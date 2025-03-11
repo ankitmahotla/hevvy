@@ -31,6 +31,15 @@ export default function RootLayout() {
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="(bottomsheets)"
+          options={{
+            presentation: "modal",
+            animation: "slide_from_bottom",
+            headerShown: false,
+          }}
+        />
+        <Stack.Screen name="workout" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />

@@ -4,18 +4,26 @@ import { router } from "expo-router";
 
 interface StackHeaderProps {
   title: String;
+  children?: React.ReactNode;
 }
 
-export const StackHeader = ({ title }: StackHeaderProps) => {
+export const StackHeader = ({ title, children }: StackHeaderProps) => {
   return (
-    <View>
-      <Pressable
-        className="flex-row items-center gap-4"
-        onPress={() => router.back()}
-      >
-        <ChevronLeft size={20} color="white" />
+    <View
+      className="flex-row items-center justify-between"
+      style={{
+        borderBottomWidth: 2,
+        borderBottomColor: "#a1a1aa",
+        paddingBottom: 10,
+      }}
+    >
+      <View className="flex-row items-center gap-4">
+        <Pressable onPress={() => router.back()}>
+          <ChevronLeft size={20} color="white" />
+        </Pressable>
         <Text className="text-lg text-white font-medium">{title}</Text>
-      </Pressable>
+      </View>
+      {children}
     </View>
   );
 };

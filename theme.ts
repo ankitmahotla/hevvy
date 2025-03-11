@@ -4,7 +4,7 @@ export const APP_THEME: Theme = {
   dark: true,
   colors: {
     primary: "#0A84FF",
-    background: "#27272a",
+    background: "#1C1C1E",
     card: "#2C2C2E",
     text: "#FFFFFF",
     border: "#38383A",
