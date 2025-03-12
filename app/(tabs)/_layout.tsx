@@ -9,7 +9,7 @@ import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { AppHeader } from "@/components/app-header";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { DumbbellIcon } from "lucide-react-native";
+import { DumbbellIcon, HomeIcon } from "lucide-react-native";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -45,9 +45,7 @@ export default function TabLayout() {
           name="index"
           options={{
             title: "Home",
-            tabBarIcon: ({ color }) => (
-              <IconSymbol size={28} name="house.fill" color={color} />
-            ),
+            tabBarIcon: ({ color }) => <HomeIcon size={28} color={color} />,
           }}
         />
         <Tabs.Screen
