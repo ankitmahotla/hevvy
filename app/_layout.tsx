@@ -41,6 +41,7 @@ export default function RootLayout() {
         />
         <Stack.Screen name="workout" options={{ headerShown: false }} />
         <Stack.Screen name="routine" options={{ headerShown: false }} />
+        <Stack.Screen name="exercise" options={{ headerShown: false }} />
         <Stack.Screen name="+not-found" />
       </Stack>
       <StatusBar style="auto" />

@@ -10,7 +10,7 @@ export default function AddExercise() {
           <Text className="text-blue-500 font-medium">Cancel</Text>
         </Pressable>
         <Text className="text-white text-lg font-medium">Add Exercise</Text>
-        <Pressable>
+        <Pressable onPress={() => router.replace("/exercise/create")}>
           <Text className="text-blue-500 font-medium">Create</Text>
         </Pressable>
       </View>

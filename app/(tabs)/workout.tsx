@@ -29,10 +29,10 @@ export default function Workout() {
           <LogsIcon size={22} color="white" />
           <Text className="text-lg text-white text-center">New Routine</Text>
         </Pressable>
-        <Pressable className="w-[47%] flex-row gap-4 bg-zinc-800 items-center px-4 py-3 rounded-lg mt-4">
+        {/* <Pressable className="w-[47%] flex-row gap-4 bg-zinc-800 items-center px-4 py-3 rounded-lg mt-4">
           <SearchIcon size={22} color="white" />
           <Text className="text-lg text-white text-center">Explore</Text>
-        </Pressable>
+        </Pressable> */}
       </View>
       <View className="flex-row items-center gap-2 mt-4">
         <ChevronDownIcon size={18} color="white" className="bg-black" />
