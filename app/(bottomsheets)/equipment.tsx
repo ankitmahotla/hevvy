@@ -4,26 +4,15 @@ import { FlatList, Pressable, Text, TextInput, View } from "react-native";
 
 export default function Equipment() {
   const equipments = [
-    { id: 1, name: "Abdominals" },
-    { id: 2, name: "Abductors" },
-    { id: 3, name: "Adductors" },
-    { id: 4, name: "Biceps" },
-    { id: 5, name: "Calves" },
-    { id: 6, name: "Cardio" },
-    { id: 7, name: "Chest" },
-    { id: 8, name: "Forearms" },
-    { id: 9, name: "Full Body" },
-    { id: 10, name: "Glutes" },
-    { id: 11, name: "Hamstrings" },
-    { id: 12, name: "Lats" },
-    { id: 13, name: "Lower Back" },
-    { id: 14, name: "Neck" },
-    { id: 15, name: "Quadriceps" },
-    { id: 16, name: "Shoulders" },
-    { id: 17, name: "Traps" },
-    { id: 18, name: "Triceps" },
-    { id: 19, name: "Upper Back" },
-    { id: 20, name: "Other" },
+    { id: 1, name: "None" },
+    { id: 2, name: "Barbell" },
+    { id: 3, name: "Dumbbell" },
+    { id: 4, name: "Kettlebell" },
+    { id: 5, name: "Machine" },
+    { id: 6, name: "Plate" },
+    { id: 7, name: "Resistance Band" },
+    { id: 8, name: "Suspension Band" },
+    { id: 9, name: "Other" },
   ];
   return (
     <View className="px-4 py-3">
@@ -32,13 +21,13 @@ export default function Equipment() {
           Select Equipment Type
         </Text>
       </View>
-      <View className="flex-row gap-3 items-center px-3 py-2 bg-zinc-800 rounded-lg my-4">
+      {/* <View className="flex-row gap-3 items-center px-3 py-2 bg-zinc-800 rounded-lg my-4">
         <SearchIcon size={20} color="#71717a" />
         <TextInput
           placeholder="Search exercise"
           placeholderTextColor={"#71717a"}
         />
-      </View>
+      </View> */}
       <FlatList
         showsVerticalScrollIndicator={false}
         data={equipments}

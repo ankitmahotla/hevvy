@@ -3,7 +3,12 @@ import { ChevronLeft, ChevronRight } from "lucide-react-native";
 import { Pressable, Text, TextInput, View } from "react-native";
 
 export default function CreateExercise() {
-  const { equipment } = useLocalSearchParams();
+  const { equipment, addedMuscleGroups } = useLocalSearchParams();
+
+  const formattedMuscleGroups = Array.isArray(addedMuscleGroups)
+    ? addedMuscleGroups.join(", ")
+    : addedMuscleGroups;
+
   return (
     <View>
       <View
@@ -28,7 +33,7 @@ export default function CreateExercise() {
           placeholderTextColor={"#a1a1aa"}
           style={{
             fontSize: 22,
-            fontWeight: 700,
+            fontWeight: "700",
             color: "white",
             paddingBottom: 12,
             borderBottomWidth: 0.5,
@@ -57,12 +62,20 @@ export default function CreateExercise() {
             <ChevronRight color="#a1a1aa" size={20} />
           </View>
         </Pressable>
+
+        {/* Display Added Muscle Groups */}
         <Pressable onPress={() => router.push("/(bottomsheets)/other-muscle")}>
-          <View className="flex-row items-center justify-between pb-3">
+          <View className="flex-row items-center justify-between pb-3 border-b-[0.5px] border-b-zinc-400">
             <View>
               <Text className="text-lg text-white">Other Muscles</Text>
-              <Text className="text-lg text-blue-500">
-                Select <Text className="text-zinc-400">(optional)</Text>
+              {/* Render comma-separated muscle groups */}
+              <Text
+              // className={cn(
+              //   "text-lg",
+              //   formattedMuscleGroups ? "text-zinc-400" : "text-blue-500",
+              // )}
+              >
+                {formattedMuscleGroups || "Select (optional)"}
               </Text>
             </View>
 

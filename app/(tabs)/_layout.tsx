@@ -5,13 +5,13 @@ import { Platform, View } from "react-native";
 import { HapticTab } from "@/components/HapticTab";
 import TabBarBackground from "@/components/ui/TabBarBackground";
 import { Colors } from "@/constants/Colors";
-import { useColorScheme } from "@/hooks/useColorScheme";
 import { AppHeader } from "@/components/app-header";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { DumbbellIcon, HomeIcon, UserIcon } from "lucide-react-native";
+import { useColorScheme } from "~/lib/useColorScheme";
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  const { colorScheme } = useColorScheme();
 
   return (
     <SafeAreaView className="flex-1" edges={["top"]}>
