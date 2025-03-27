@@ -48,7 +48,19 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
       <StatusBar style={isDarkColorScheme ? "light" : "dark"} />
-      <Stack screenOptions={{ headerShown: false }} />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="(tabs)" />
+        <Stack.Screen
+          name="(bottomsheets)"
+          options={{
+            presentation: "modal",
+          }}
+        />
+        <Stack.Screen name="(auth)" />
+        <Stack.Screen name="exercise" />
+        <Stack.Screen name="routine" />
+        <Stack.Screen name="workout" />
+      </Stack>
     </ThemeProvider>
   );
 }

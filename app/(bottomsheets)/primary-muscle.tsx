@@ -46,7 +46,7 @@ export default function PrimaryMuscleGroup() {
           <Pressable
             onPress={() => {
               router.back();
-              router.setParams({ equipment: item.name });
+              router.setParams({ primaryMuscle: item.name });
             }}
           >
             <View className="py-3 border-b-[0.5px] border-b-zinc-400">

@@ -1,4 +1,4 @@
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { SearchIcon } from "lucide-react-native";
 import { useState } from "react";
 import { FlatList, Pressable, Text, TextInput, View } from "react-native";
@@ -64,10 +64,11 @@ const ListItem = ({ item, setSelectedMuscleGroups }: ListItemProps) => {
 };
 
 export default function OtherMuscleGroup() {
+  const { addedMuscleGroups } = useLocalSearchParams();
+  console.log(addedMuscleGroups);
   const [selectedMuscleGroups, setSelectedMuscleGroups] = useState<
     MuscleGroup[]
   >([]);
-  console.log(selectedMuscleGroups);
   return (
     <View className="relative px-4 py-3">
       <View className="flex-row items-center justify-center gap-3 py-4">
@@ -88,10 +89,10 @@ export default function OtherMuscleGroup() {
             const addedMuscleGroups = selectedMuscleGroups
               .map((muscleGroup) => muscleGroup.name)
               .join(", "); // Join names with a comma
+            router.back(); // Navigate back after setting params
             router.setParams({
               addedMuscleGroups,
             });
-            router.back(); // Navigate back after setting params
           }}
           className="bg-blue-500 rounded-lg p-3"
         >
