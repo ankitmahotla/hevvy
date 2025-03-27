@@ -1,30 +1,17 @@
 import { router } from "expo-router";
 import { SearchIcon } from "lucide-react-native";
 import { FlatList, Pressable, Text, TextInput, View } from "react-native";
+import { muscles } from "@/constants/muscles";
+import { useAtom } from "jotai";
+import { createExerciseAtom } from "@/store/exercise";
 
 export default function PrimaryMuscleGroup() {
-  const equipments = [
-    { id: 1, name: "Abdominals" },
-    { id: 2, name: "Abductors" },
-    { id: 3, name: "Adductors" },
-    { id: 4, name: "Biceps" },
-    { id: 5, name: "Calves" },
-    { id: 6, name: "Cardio" },
-    { id: 7, name: "Chest" },
-    { id: 8, name: "Forearms" },
-    { id: 9, name: "Full Body" },
-    { id: 10, name: "Glutes" },
-    { id: 11, name: "Hamstrings" },
-    { id: 12, name: "Lats" },
-    { id: 13, name: "Lower Back" },
-    { id: 14, name: "Neck" },
-    { id: 15, name: "Quadriceps" },
-    { id: 16, name: "Shoulders" },
-    { id: 17, name: "Traps" },
-    { id: 18, name: "Triceps" },
-    { id: 19, name: "Upper Back" },
-    { id: 20, name: "Other" },
-  ];
+  const [exercise, setExercise] = useAtom(createExerciseAtom);
+
+  const handlePrimaryMuscleSelect = (primaryMuscleGroup: string) => {
+    router.back();
+    setExercise({ ...exercise, primaryMuscleGroup });
+  };
   return (
     <View className="px-4 py-3">
       <View className="flex-row items-center justify-center gap-3 py-4">
@@ -41,14 +28,9 @@ export default function PrimaryMuscleGroup() {
       </View>
       <FlatList
         showsVerticalScrollIndicator={false}
-        data={equipments}
+        data={muscles}
         renderItem={({ item }) => (
-          <Pressable
-            onPress={() => {
-              router.back();
-              router.setParams({ primaryMuscle: item.name });
-            }}
-          >
+          <Pressable onPress={handlePrimaryMuscleSelect.bind(null, item.name)}>
             <View className="py-3 border-b-[0.5px] border-b-zinc-400">
               <Text className="text-white text-lg font-medium">
                 {item.name}

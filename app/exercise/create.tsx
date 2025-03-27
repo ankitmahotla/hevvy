@@ -1,15 +1,16 @@
 import { cn } from "@/lib/utils";
+import { createExerciseAtom } from "@/store/exercise";
 import { router, useLocalSearchParams } from "expo-router";
+import { useAtom } from "jotai";
 import { ChevronLeft, ChevronRight } from "lucide-react-native";
 import { Pressable, Text, TextInput, View } from "react-native";
 
 export default function CreateExercise() {
-  const { equipment, addedMuscleGroups, primaryMuscle } =
-    useLocalSearchParams();
+  const [exercise, setExercise] = useAtom(createExerciseAtom);
 
-  const formattedMuscleGroups = Array.isArray(addedMuscleGroups)
-    ? addedMuscleGroups.join(", ")
-    : addedMuscleGroups;
+  const formattedMuscleGroups = Array.isArray(exercise.otherMuscleGroups)
+    ? exercise.otherMuscleGroups.join(", ")
+    : exercise.otherMuscleGroups;
 
   return (
     <View>
@@ -31,6 +32,8 @@ export default function CreateExercise() {
       </View>
       <View className="flex gap-4 px-4 mt-12">
         <TextInput
+          value={exercise.name || ""}
+          onChangeText={(text) => setExercise({ ...exercise, name: text })}
           placeholder="Exercise Name"
           placeholderTextColor={"#a1a1aa"}
           style={{
@@ -47,7 +50,7 @@ export default function CreateExercise() {
             <View>
               <Text className="text-lg text-white">Equipment</Text>
               <Text className="text-lg text-blue-500">
-                {equipment ?? "Select"}
+                {exercise.equipment === "" ? "Select" : exercise.equipment}
               </Text>
             </View>
             <ChevronRight color="#a1a1aa" size={20} />
@@ -60,7 +63,9 @@ export default function CreateExercise() {
             <View>
               <Text className="text-lg text-white">Primary Muscle Group</Text>
               <Text className="text-lg text-blue-500">
-                {primaryMuscle ?? "Select"}
+                {exercise.primaryMuscleGroup === ""
+                  ? "Select"
+                  : exercise.primaryMuscleGroup}
               </Text>
             </View>
             <ChevronRight color="#a1a1aa" size={20} />
