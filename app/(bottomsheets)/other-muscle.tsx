@@ -1,11 +1,12 @@
 import { router } from "expo-router";
 import { SearchIcon } from "lucide-react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FlatList, Pressable, Text, TextInput, View } from "react-native";
 import Checkbox from "expo-checkbox";
 import { muscles } from "@/constants/muscles";
 import { createExerciseAtom } from "@/store/exercise";
 import { useAtom } from "jotai";
+import { useDebounce } from "@uidotdev/usehooks";
 
 interface MuscleGroup {
   id: number;
@@ -59,6 +60,28 @@ export default function OtherMuscleGroup() {
       exercise.otherMuscleGroups.includes(muscle.name),
     ),
   );
+  const [searchInput, setSearchInput] = useState("");
+  const [muscleList, setMuscleList] = useState(muscles);
+  const debouncedSearchInput = useDebounce(searchInput, 300);
+
+  const handleInputChange = (input: string) => {
+    setSearchInput(input);
+  };
+
+  useEffect(() => {
+    const filterMuscles = () => {
+      if (debouncedSearchInput) {
+        setMuscleList(
+          muscles.filter((muscle) =>
+            muscle.name.includes(debouncedSearchInput),
+          ),
+        );
+      } else {
+        setMuscleList(muscles);
+      }
+    };
+    filterMuscles();
+  }, [debouncedSearchInput]);
 
   const handleOtherMuscleGroupSelect = () => {
     router.back();
@@ -78,8 +101,11 @@ export default function OtherMuscleGroup() {
       <View className="flex-row gap-3 items-center px-3 py-2 bg-zinc-800 rounded-lg my-4">
         <SearchIcon size={20} color="#71717a" />
         <TextInput
+          value={searchInput}
+          onChangeText={handleInputChange}
           placeholder="Search muscle"
           placeholderTextColor={"#71717a"}
+          className="text-white"
         />
       </View>
       <View className="absolute bottom-40 left-0 right-0 z-10 mx-3">
@@ -94,7 +120,7 @@ export default function OtherMuscleGroup() {
       </View>
       <FlatList
         showsVerticalScrollIndicator={false}
-        data={muscles}
+        data={muscleList}
         renderItem={({ item }) => (
           <ListItem
             item={item}
