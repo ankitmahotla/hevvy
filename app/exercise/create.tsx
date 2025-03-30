@@ -1,16 +1,45 @@
 import { cn } from "@/lib/utils";
-import { createExerciseAtom } from "@/store/exercise";
+import { createExerciseAtom, exerciseAtom } from "@/store/exercise";
 import { router, useLocalSearchParams } from "expo-router";
 import { useAtom } from "jotai";
 import { ChevronLeft, ChevronRight } from "lucide-react-native";
-import { Pressable, Text, TextInput, View } from "react-native";
+import { Alert, Pressable, Text, TextInput, View } from "react-native";
 
 export default function CreateExercise() {
   const [exercise, setExercise] = useAtom(createExerciseAtom);
+  const [exercises, setExercises] = useAtom(exerciseAtom);
 
   const formattedMuscleGroups = Array.isArray(exercise.otherMuscleGroups)
     ? exercise.otherMuscleGroups.join(", ")
     : exercise.otherMuscleGroups;
+
+  const handleSavePress = () => {
+    if (
+      exercise &&
+      exercise.name &&
+      exercise.equipment &&
+      exercise.primaryMuscleGroup
+    ) {
+      if (!exercises.some((item) => item.name === exercise.name)) {
+        setExercises(async (prev) => {
+          const currentExercises = await prev;
+          return [...currentExercises, exercise];
+        });
+
+        // Reset the form after saving
+        setExercise({
+          name: "",
+          equipment: "",
+          primaryMuscleGroup: "",
+          otherMuscleGroups: [],
+        });
+
+        router.back();
+      } else {
+        Alert.alert("This exercise exists already");
+      }
+    }
+  };
 
   return (
     <View>
@@ -26,7 +55,10 @@ export default function CreateExercise() {
           <ChevronLeft size={24} color="white" />
         </Pressable>
         <Text className="text-lg text-white font-medium">Create Exercise</Text>
-        <Pressable className="bg-blue-500 rounded-lg px-3 py-2">
+        <Pressable
+          onPress={handleSavePress}
+          className="bg-blue-500 rounded-lg px-3 py-2"
+        >
           <Text className="text-white text-center font-medium">Save</Text>
         </Pressable>
       </View>
