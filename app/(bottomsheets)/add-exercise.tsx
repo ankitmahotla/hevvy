@@ -1,4 +1,4 @@
-import { exerciseAtom } from "@/store/exercise";
+import { exercisesAtom } from "@/store/exercise";
 import { useDebounce } from "@uidotdev/usehooks";
 import { router } from "expo-router";
 import { useAtom } from "jotai";
@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { FlatList, Pressable, Text, TextInput, View } from "react-native";
 
 export default function AddExercise() {
-  const [exercises] = useAtom(exerciseAtom);
+  const [exercises] = useAtom(exercisesAtom);
   const [searchInput, setSearchInput] = useState("");
   const [exerciseList, setExerciseList] = useState(exercises);
   const debouncedSearchInput = useDebounce(searchInput, 300);

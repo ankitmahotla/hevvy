@@ -1,5 +1,5 @@
 import { cn } from "@/lib/utils";
-import { createExerciseAtom, exerciseAtom } from "@/store/exercise";
+import { createExerciseAtom, exercisesAtom } from "@/store/exercise";
 import { router, useLocalSearchParams } from "expo-router";
 import { useAtom } from "jotai";
 import { ChevronLeft, ChevronRight } from "lucide-react-native";
@@ -7,7 +7,7 @@ import { Alert, Pressable, Text, TextInput, View } from "react-native";
 
 export default function CreateExercise() {
   const [exercise, setExercise] = useAtom(createExerciseAtom);
-  const [exercises, setExercises] = useAtom(exerciseAtom);
+  const [exercises, setExercises] = useAtom(exercisesAtom);
 
   const formattedMuscleGroups = Array.isArray(exercise.otherMuscleGroups)
     ? exercise.otherMuscleGroups.join(", ")
@@ -32,6 +32,7 @@ export default function CreateExercise() {
           equipment: "",
           primaryMuscleGroup: "",
           otherMuscleGroups: [],
+          measurementTypes: [],
         });
 
         router.back();

@@ -57,7 +57,7 @@ export default function OtherMuscleGroup() {
   >(
     // Initialize with existing muscle groups from the atom
     muscles.filter((muscle) =>
-      exercise.otherMuscleGroups.includes(muscle.name),
+      exercise?.otherMuscleGroups?.includes(muscle.name),
     ),
   );
   const [searchInput, setSearchInput] = useState("");
