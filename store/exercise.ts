@@ -2,16 +2,15 @@ import { atom } from "jotai";
 import { atomWithStorage, createJSONStorage } from "jotai/utils";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-// Define all possible measurement properties
 enum MeasurementProperty {
   REPS = "REPS",
   KG = "KG",
   TIME = "TIME",
   KM = "KM",
+  ADDED_KG = "+KG",
   NEGATIVE_KG = "-KG",
 }
 
-// Define the exercise types enum to match your array
 export enum ExerciseType {
   WEIGHT_REPS = 1,
   BODYWEIGHT_REPS = 2,
@@ -23,7 +22,6 @@ export enum ExerciseType {
   WEIGHT_DISTANCE = 8,
 }
 
-// Define the exercise type info interface matching your array
 export interface ExerciseTypeInfo {
   id: ExerciseType;
   name: string;
@@ -31,7 +29,6 @@ export interface ExerciseTypeInfo {
   properties: MeasurementProperty[];
 }
 
-// Your exercise types array with proper typing
 export const exerciseTypes: ExerciseTypeInfo[] = [
   {
     id: ExerciseType.WEIGHT_REPS,
@@ -49,7 +46,7 @@ export const exerciseTypes: ExerciseTypeInfo[] = [
     id: ExerciseType.WEIGHTED_BODYWEIGHT,
     name: "Weighted Bodyweight",
     example: "Weighted Pull Ups, Weighted Dips",
-    properties: [MeasurementProperty.REPS, MeasurementProperty.KG],
+    properties: [MeasurementProperty.REPS, MeasurementProperty.ADDED_KG],
   },
   {
     id: ExerciseType.ASSISTED_BODYWEIGHT,
@@ -88,7 +85,7 @@ export interface Exercise {
   equipment: string;
   primaryMuscleGroup: string;
   otherMuscleGroups?: string[];
-  exerciseTypeId: ExerciseType; // Store the ID/enum value
+  exerciseTypeId: ExerciseType;
 }
 
 export const createExerciseAtom = atom<Exercise>({
@@ -96,7 +93,7 @@ export const createExerciseAtom = atom<Exercise>({
   equipment: "",
   primaryMuscleGroup: "",
   otherMuscleGroups: [],
-  exerciseTypeId: ExerciseType.BODYWEIGHT_REPS, // Default
+  exerciseTypeId: ExerciseType.BODYWEIGHT_REPS,
 });
 
 const storage = createJSONStorage<Exercise[]>(() => AsyncStorage);
