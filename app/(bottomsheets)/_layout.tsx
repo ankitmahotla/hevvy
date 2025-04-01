@@ -9,6 +9,7 @@ export default function BottomSheetLayout() {
         <Stack.Screen name="equipment" />
         <Stack.Screen name="primary-muscle" />
         <Stack.Screen name="other-muscle" />
+        <Stack.Screen name="exercise-type" />
       </Stack>
     </SafeAreaView>
   );

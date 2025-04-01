@@ -1,6 +1,11 @@
 import { cn } from "@/lib/utils";
-import { createExerciseAtom, exercisesAtom } from "@/store/exercise";
-import { router, useLocalSearchParams } from "expo-router";
+import {
+  createExerciseAtom,
+  exercisesAtom,
+  ExerciseType,
+  exerciseTypes,
+} from "@/store/exercise";
+import { router } from "expo-router";
 import { useAtom } from "jotai";
 import { ChevronLeft, ChevronRight } from "lucide-react-native";
 import { Alert, Pressable, Text, TextInput, View } from "react-native";
@@ -26,13 +31,12 @@ export default function CreateExercise() {
           return [...currentExercises, exercise];
         });
 
-        // Reset the form after saving
         setExercise({
           name: "",
           equipment: "",
           primaryMuscleGroup: "",
           otherMuscleGroups: [],
-          measurementTypes: [],
+          exerciseTypeId: ExerciseType.BODYWEIGHT_REPS, // Or whatever default you prefer
         });
 
         router.back();
@@ -121,6 +125,21 @@ export default function CreateExercise() {
               </Text>
             </View>
 
+            <ChevronRight color="#a1a1aa" size={20} />
+          </View>
+        </Pressable>
+        <Pressable onPress={() => router.push("/(bottomsheets)/exercise-type")}>
+          <View className="flex-row items-center justify-between pb-3 border-b-[0.5px] border-b-zinc-400">
+            <View>
+              <Text className="text-lg text-white">Exercise Type</Text>
+              <Text className="text-lg text-blue-500">
+                {exercise.exerciseTypeId
+                  ? exerciseTypes.find(
+                      (type) => type.id === exercise.exerciseTypeId,
+                    )?.name
+                  : "Select"}
+              </Text>
+            </View>
             <ChevronRight color="#a1a1aa" size={20} />
           </View>
         </Pressable>
