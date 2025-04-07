@@ -1,4 +1,4 @@
-import { Text, TextInput, View } from "react-native";
+import { Pressable, Text, TextInput, View } from "react-native";
 
 export default function Profile() {
   return (
@@ -17,6 +17,9 @@ export default function Profile() {
           <Text className="text-zinc-300 text-sm">Workouts</Text>
           <Text className="text-white text-lg">1200</Text>
         </View>
+        {/* <Pressable>
+          Reset
+        </Pressable> */}
         {/* <View>
           <Text className="text-zinc-300 text-sm">Volume</Text>
           <Text className="text-white text-lg">0 kg</Text>

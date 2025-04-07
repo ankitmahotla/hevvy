@@ -1,4 +1,5 @@
 import { exercisesAtom } from "@/store/exercise";
+import { createWorkoutAtom } from "@/store/workout";
 import { useDebounce } from "@uidotdev/usehooks";
 import { router } from "expo-router";
 import { useAtom } from "jotai";
@@ -11,6 +12,7 @@ export default function AddExercise() {
   const [searchInput, setSearchInput] = useState("");
   const [exerciseList, setExerciseList] = useState(exercises);
   const debouncedSearchInput = useDebounce(searchInput, 300);
+  const [workout, setWorkout] = useAtom(createWorkoutAtom);
 
   const handleInputChange = (input: string) => {
     setSearchInput(input);
@@ -59,7 +61,15 @@ export default function AddExercise() {
           showsVerticalScrollIndicator={false}
           data={exerciseList}
           renderItem={({ item }) => (
-            <Pressable>
+            <Pressable
+              onPress={() => {
+                setWorkout({
+                  ...workout,
+                  exercises: [...workout.exercises, item.name],
+                });
+                router.back();
+              }}
+            >
               <View className="py-3 border-b-[0.5px] border-b-zinc-400">
                 <Text className="text-white text-lg font-medium">
                   {item.name}
