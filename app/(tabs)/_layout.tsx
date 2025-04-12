@@ -3,24 +3,21 @@ import React from "react";
 import { Platform, Pressable, Text, View } from "react-native";
 
 import { HapticTab } from "@/components/HapticTab";
-import TabBarBackground from "@/components/ui/TabBarBackground";
-import { Colors } from "@/constants/Colors";
 import { AppHeader } from "@/components/app-header";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { DumbbellIcon, HomeIcon, UserIcon } from "lucide-react-native";
-import { useColorScheme } from "~/lib/useColorScheme";
 import { useAtom } from "jotai";
 import { createWorkoutAtom } from "@/store/workout";
-import { RESET } from "jotai/utils";
+import { RESET, useResetAtom } from "jotai/utils";
 
 export default function TabLayout() {
-  const { colorScheme } = useColorScheme();
   const [workout, setWorkout] = useAtom(createWorkoutAtom);
+  const resetWorkoutAtom = useResetAtom(createWorkoutAtom);
+
   return (
     <SafeAreaView className="flex-1" edges={["top"]}>
       <Tabs
         screenOptions={{
-          tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
           tabBarButton: HapticTab,
           header: ({ route }) => {
             const title =
@@ -68,9 +65,7 @@ export default function TabLayout() {
         <View className="absolute bottom-32 left-0 right-0">
           <View className="w-full flex-col items-center px-4">
             <Pressable
-              onPress={() => {
-                setWorkout(RESET);
-              }}
+              onPress={resetWorkoutAtom}
               className="items-center px-3 py-2 bg-blue-500 rounded-lg"
             >
               <Text className="text-white">Reset</Text>

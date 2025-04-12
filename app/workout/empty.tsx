@@ -6,13 +6,23 @@ import { createWorkoutAtom } from "@/store/workout";
 import { router } from "expo-router";
 import { useAtom } from "jotai";
 import { DumbbellIcon, PlusIcon } from "lucide-react-native";
-import { useState } from "react";
-import { Pressable, Text, TextInput, View } from "react-native";
+import { useEffect, useState } from "react";
+import { Pressable, Text, View } from "react-native";
+import { formatDistanceToNowStrict } from "date-fns";
 
 export default function Empty() {
   const [modalVisible, setModalVisible] = useState(false);
   const [exercises] = useAtom(exercisesAtom);
   const [workout, setWorkout] = useAtom(createWorkoutAtom);
+
+  useEffect(() => {
+    if (workout.created_at !== undefined) {
+      setWorkout({
+        ...workout,
+        created_at: new Date(),
+      });
+    }
+  }, [workout]);
 
   return (
     <View>

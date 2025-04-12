@@ -15,7 +15,7 @@ interface Workout {
   volume: string;
   duration: string;
   sets: Set[];
-  created_at: Date;
+  created_at: Date | undefined;
   exercises: string[];
 }
 
@@ -25,7 +25,7 @@ const content: Workout = {
   volume: "",
   duration: "",
   sets: [],
-  created_at: new Date(),
+  created_at: undefined,
   exercises: [],
 };
 
