@@ -18,8 +18,16 @@ export const Sets = ({ filteredExercise, index }: SetsProps) => {
       </View>
       <View className="flex-row gap-2 items-center justify-between pt-4">
         <Text className="text-white">{index + 1}</Text>
-        <TextInput placeholder="0" />
-        <TextInput placeholder="0" />
+        <TextInput
+          placeholder="0"
+          className="text-white"
+          keyboardType="numeric"
+        />
+        <TextInput
+          placeholder="0"
+          className="text-white"
+          keyboardType="numeric"
+        />
         <Pressable>
           <Text>☑️</Text>
         </Pressable>
