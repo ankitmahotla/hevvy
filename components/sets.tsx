@@ -21,6 +21,7 @@ const renderMeasurementField = (item: string) => {
               : "0 km"
       }
       className="text-white"
+      placeholderTextColor="gray"
       keyboardType="numeric"
       style={{ textAlign: "center" }}
     />
