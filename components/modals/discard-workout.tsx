@@ -6,6 +6,8 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { router } from "expo-router";
+import { useResetAtom } from "jotai/utils";
+import { createWorkoutAtom } from "@/store/workout";
 
 interface DiscardWorkoutModalProps {
   modalVisible: boolean;
@@ -16,9 +18,14 @@ export const DiscardWorkoutModal = ({
   modalVisible,
   setModalVisible,
 }: DiscardWorkoutModalProps) => {
+  const resetWorkoutAtom = useResetAtom(createWorkoutAtom);
+
   const handleDiscard = () => {
     setModalVisible(false);
-    router.back();
+    resetWorkoutAtom();
+    if (router.canGoBack()) {
+      router.back();
+    }
   };
 
   return (

@@ -16,9 +16,25 @@ export default function Empty() {
   const [duration, setDuration] = useState<string>("");
 
   // Function to format duration
-  const formatDuration = (startTime: Date): string => {
+  const formatDuration = (startTime: string | Date): string => {
+    let date: Date;
+
+    if (typeof startTime === "string") {
+      date = new Date(startTime);
+    } else if (startTime instanceof Date) {
+      date = startTime;
+    } else {
+      console.error("Invalid startTime passed to formatDuration:", startTime);
+      return "0s"; // Default fallback duration
+    }
+
+    if (isNaN(date.getTime())) {
+      console.error("Invalid date object created from startTime:", date);
+      return "0s"; // Default fallback duration
+    }
+
     const now = new Date();
-    const elapsed = Math.floor((now.getTime() - startTime.getTime()) / 1000);
+    const elapsed = Math.floor((now.getTime() - date.getTime()) / 1000);
 
     const days = Math.floor(elapsed / 86400);
     const hours = Math.floor((elapsed % 86400) / 3600);
@@ -36,7 +52,6 @@ export default function Empty() {
   };
 
   useEffect(() => {
-    // Initialize workout creation time if not already set
     if (!workout.created_at) {
       setWorkout({
         ...workout,
@@ -51,7 +66,6 @@ export default function Empty() {
       }
     }, 1000);
 
-    // Cleanup interval on unmount
     return () => clearInterval(intervalId);
   }, [workout, setWorkout]);
 
