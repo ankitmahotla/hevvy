@@ -1,31 +1,39 @@
+// store/workout.ts
+
 import { atomWithStorage, createJSONStorage } from "jotai/utils";
-import { Exercise } from "./exercise";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-interface Set {
-  exercise: Exercise;
+export interface ExerciseInstance {
+  id: string;
+  exerciseName: string;
+}
+
+export interface Set {
+  id: number;
+  exerciseInstanceId: string;
   distance?: string;
   time?: string;
   weight?: string;
   reps?: string;
 }
 
-interface Workout {
+export interface Workout {
   name: string;
   volume: string;
   duration: string;
   sets: Set[];
-  created_at: Date | undefined;
-  exercises: string[];
+  createdAt?: string;
+  exercises: ExerciseInstance[];
 }
 
 const storage = createJSONStorage<Workout>(() => AsyncStorage);
+
 const content: Workout = {
   name: "",
   volume: "",
   duration: "",
   sets: [],
-  created_at: undefined,
+  createdAt: undefined,
   exercises: [],
 };
 

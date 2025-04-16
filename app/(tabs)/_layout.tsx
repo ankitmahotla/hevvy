@@ -14,7 +14,6 @@ import {
 } from "lucide-react-native";
 import { useAtom } from "jotai";
 import { createWorkoutAtom } from "@/store/workout";
-import { RESET, useResetAtom } from "jotai/utils";
 import { DiscardWorkoutModal } from "@/components/modals/discard-workout";
 
 export default function TabLayout() {
@@ -68,7 +67,7 @@ export default function TabLayout() {
           }}
         />
       </Tabs>
-      {workout.created_at !== undefined && (
+      {workout.createdAt !== undefined && (
         <View className="absolute bottom-28 left-0 right-0">
           <View className="w-full rounded-t-2xl bg-zinc-800 px-4 pt-3">
             <Text className="text-lg text-center font-medium text-zinc-400">
