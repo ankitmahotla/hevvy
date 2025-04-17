@@ -40,7 +40,8 @@ export default function Empty() {
     let formattedDuration = "";
     if (days > 0) formattedDuration += `${days}d `;
     if (hours > 0 || days > 0) formattedDuration += `${hours}hr `;
-    if (minutes > 0 || hours > 0 || days > 0) formattedDuration += `${minutes}min `;
+    if (minutes > 0 || hours > 0 || days > 0)
+      formattedDuration += `${minutes}min `;
     formattedDuration += `${seconds}s`;
 
     return formattedDuration.trim();
@@ -95,7 +96,9 @@ export default function Empty() {
           </View>
           <View>
             <Text className="text-zinc-300 text-sm">Volume</Text>
-            <Text className="text-white text-lg">{totalVolume.toFixed(1)} kg</Text>
+            <Text className="text-white text-lg">
+              {totalVolume.toFixed(1)} kg
+            </Text>
           </View>
           <View>
             <Text className="text-zinc-300 text-sm">Sets</Text>
@@ -146,7 +149,9 @@ export default function Empty() {
             onPress={() => setModalVisible(true)}
             className="w-full flex-row justify-center items-center gap-3 bg-zinc-700 rounded-lg px-3 py-2 mt-4"
           >
-            <Text className="text-red-600 font-medium text-lg">Discard Workout</Text>
+            <Text className="text-red-600 font-medium text-lg">
+              Discard Workout
+            </Text>
           </Pressable>
 
           {/* Discard Workout Modal */}

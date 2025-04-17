@@ -10,9 +10,18 @@ interface SetsProps {
   filteredExercise: any;
 }
 
+const fieldToPropertyMap: Record<string, string> = {
+  KG: "weight",
+  "+KG": "weight",
+  "-KG": "weight",
+  REPS: "reps",
+  TIME: "time",
+  DISTANCE: "distance",
+};
+
 const renderMeasurementField = (
   item: string,
-  value: string | undefined,
+  value: string,
   onChange: (text: string) => void,
 ) => {
   const placeholder =
@@ -74,15 +83,19 @@ export const Sets = ({ exerciseInstance, filteredExercise }: SetsProps) => {
   // Update a field in a set
   const updateSetField = useCallback(
     (setId: number, field: string, value: string) => {
+      const propertyKey =
+        fieldToPropertyMap[field.toUpperCase()] || field.toLowerCase();
+
       const updatedSets = workout.sets.map((set) => {
         if (set.id === setId) {
           return {
             ...set,
-            [field.toLowerCase()]: value,
+            [propertyKey]: value,
           };
         }
         return set;
       });
+
       setWorkout({ ...workout, sets: updatedSets });
     },
     [workout, setWorkout],
@@ -100,7 +113,9 @@ export const Sets = ({ exerciseInstance, filteredExercise }: SetsProps) => {
   return (
     <View key={exerciseInstance.id} className="mb-8">
       <View className="flex-row items-center justify-between pb-2">
-        <Text className="text-blue-500 text-xl">{exerciseInstance.exerciseName}</Text>
+        <Text className="text-blue-500 text-xl">
+          {exerciseInstance.exerciseName}
+        </Text>
         <EllipsisVertical size={18} color="white" />
       </View>
 
@@ -140,8 +155,9 @@ export const Sets = ({ exerciseInstance, filteredExercise }: SetsProps) => {
           {/* Dynamic input fields */}
           <View className="flex-row" style={{ width: "70%" }}>
             {setType.map((item) => {
-              const key = item.toLowerCase();
-              const value = (set as any)[key] ?? "";
+              const propertyKey =
+                fieldToPropertyMap[item.toUpperCase()] || item.toLowerCase();
+              const value = (set as any)[propertyKey] ?? "";
 
               return (
                 <View key={item} style={{ width: `${propertyWidth}%` }}>
